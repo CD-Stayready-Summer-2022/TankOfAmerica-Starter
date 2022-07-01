@@ -1,6 +1,9 @@
 package com.codedifferently.tankofamerica.domain.user.models;
 
+import com.codedifferently.tankofamerica.domain.account.models.Account;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -12,6 +15,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="owner")
+    private Set<Account> accounts;
 
     public User() {
     }
@@ -61,6 +67,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
     }
 
     public String toString(){
