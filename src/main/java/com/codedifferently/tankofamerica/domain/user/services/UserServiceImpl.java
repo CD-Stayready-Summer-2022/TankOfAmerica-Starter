@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -42,4 +43,16 @@ public class UserServiceImpl implements UserService {
         return optional.get();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserServiceImpl that = (UserServiceImpl) o;
+        return Objects.equals(userRepo, that.userRepo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userRepo);
+    }
 }
